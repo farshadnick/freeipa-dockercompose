@@ -2,7 +2,7 @@
 version: '3.7'
 services:
   freeipa:
-    image: freeipa/${VERSION}
+    image: freeipa/freeipa-server:centos-8
     restart: unless-stopped
     hostname: freeipa.packops.local
     environment:
