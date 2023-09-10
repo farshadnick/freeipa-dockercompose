@@ -6,4 +6,4 @@ vim /etc/docker/daemon.json
 ```
 service docker restart
 
-## docker compose up -d 
+docker compose up -d 
