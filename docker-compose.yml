@@ -2,20 +2,20 @@
 version: '3.7'
 services:
   freeipa:
-    image: freeipa/freeipa-server:centos-8-4.8.7
+    image: freeipa/freeipa-server:almalinux-9
     restart: unless-stopped
     hostname: freeipa.packops.local
     environment:
       IPA_SERVER_HOSTNAME: freeipa.packops.local
-      TZ: "Europe/Paris"
+      TZ: "Asia/Tehran"
     tty: true
     stdin_open: true
     cap_add:
       - NET_ADMIN
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - datafreeipa:/data
+        # - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - freeipavol:/data
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.lo.disable_ipv6=0
@@ -25,19 +25,14 @@ services:
       - -U
       - --domain=packops.local
       - --realm=packops.local
-      - --http-pin=UltraS3cure
-      - --dirsrv-pin=UltraS3cure
-      - --ds-password=UltraS3cure
-      - --admin-password=UltraS3cure
+      - --http-pin=YOURPASSWORD
+      - --dirsrv-pin=YOURPASSWORDe
+      - --ds-password=YOURPASSWORD
+      - --admin-password=YOURPASSWORD
       - --no-host-dns
-      #- --no-dnssec-validation
-      #- --setup-dns
-      #- --auto-forwarders
-      #- --allow-zone-overlap
       - --unattended
     ports:
-      #- "53:53/udp"
-      #- "53:53"
+
       - "80:80"
       - "443:443"
       - "389:389"
@@ -53,4 +48,4 @@ services:
       - "9445:9445"
 
 volumes:
-  datafreeipa:
+  freeipavol:
