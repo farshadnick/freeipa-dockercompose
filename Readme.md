@@ -4,5 +4,6 @@ vim /etc/docker/daemon.json
 ```
 {"userns-remap": "default"}
 ```
+service docker restart
 
 ## docker compose up -d 
